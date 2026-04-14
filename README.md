@@ -5,6 +5,7 @@
 When you finish, add your names and a demo video link here, then submit one link to your project repository.
 
 **Group Members:** (list all group members here)  
+Micah Williams & Brayden Gibson
 * [Demo Video (1 per group)](http://includeyourlinkhere)
 
 ---
