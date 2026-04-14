@@ -16,3 +16,14 @@ def init_db():
     """)
     conn.commit()
     conn.close()
+
+def init_messages_db():
+    conn = get_db()
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS messages (
+            message TEXT PRIMARY KEY,
+            author TEXT
+        )
+    """)
+    conn.commit()
+    conn.close()

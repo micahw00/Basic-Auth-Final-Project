@@ -3,7 +3,7 @@
 # pip install flask
 
 from flask import Flask, request, redirect, url_for, render_template, session
-from database import get_db, init_db
+from database import get_db, init_db, init_messages_db
 import bcrypt
 import re
 
@@ -11,6 +11,8 @@ app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
 init_db()
+
+init_messages_db()
 
 # ---------- PASSWORD VALIDATION ----------
 def is_valid_password(password):
