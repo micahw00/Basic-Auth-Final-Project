@@ -26,6 +26,12 @@ def seed_database():
         ("bob", "SecurePass456@"),
         ("charlie", "MyPassword789#"),
     ]
+
+    sample_messages = [
+        ("alice", "Hello world!"),
+        ("bob", "I put pizza into a deepfryer"),
+        ("charlie", "HOW DO I BREATH"),
+    ]
     
     try:
         for username, password in sample_users:
@@ -35,6 +41,12 @@ def seed_database():
                 (username, hashed_pw)
             )
             print(f"Created user: {username}")
+
+        for author, message in sample_messages:
+            e_conn.execute(
+                "INSERT INTO messages (username, password) VALUES (?, ?)",
+                (author, message)
+            )
         
         conn.commit()
         print("\nDatabase seeding complete!")

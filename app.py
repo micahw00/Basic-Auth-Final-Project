@@ -84,7 +84,7 @@ def dashboard():
 
     # TODO: Connect to the database
     # conn = get_db()
-    #conn.execute("INSERT INTO users (message, author) VALUES (?, ?)",
+    #conn.execute("INSERT INTO messages (message, author) VALUES (?, ?)",
                    # (message, username)
                 #)
 
@@ -114,14 +114,14 @@ def dashboard():
 # - Redirect back to dashboard
 # NOTE: Remove the triple """ before and after each route to 'uncomment'
 """
-@app.route("/create", methods=["GET", "POST"])
-def create():
+@app.route("/message_board", methods=["GET", "POST"])
+def message_board():
     if "user" not in session:
         return redirect(url_for("login"))
 
     if request.method == "POST":
-        message = request.form["username"].strip()
-        password = request.form["password"].strip()
+        message = request.form["message"].strip()
+        author = request.form["password"].strip()
 
         # TODO: Connect to database
 
