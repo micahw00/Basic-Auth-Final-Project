@@ -18,6 +18,7 @@ def seed_database():
     init_db()  # Ensure tables are created
     
     conn = get_db()
+    e_conn = get_entries.db()
     
     # Sample users with passwords
     sample_users = [
