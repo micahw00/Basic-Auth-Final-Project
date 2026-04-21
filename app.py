@@ -3,7 +3,7 @@
 # pip install flask
 
 from flask import Flask, request, redirect, url_for, render_template, session
-from database import get_db, init_db, init_messages_db
+from database import get_db, init_db
 import bcrypt
 import re
 
@@ -12,7 +12,6 @@ app.secret_key = "supersecretkey"
 
 init_db()
 
-init_messages_db()
 
 # ---------- PASSWORD VALIDATION ----------
 def is_valid_password(password):
@@ -121,7 +120,8 @@ def create():
         return redirect(url_for("login"))
 
     if request.method == "POST":
-        # TODO: Get form data (title, content)
+        message = request.form["username"].strip()
+        password = request.form["password"].strip()
 
         # TODO: Connect to database
 

@@ -5,8 +5,14 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
+def get_messages_db():
+    conn = sqlite3.connect("messages.db")
+    conn.row_factory = sqlite3.Row
+    return conn
+
 def init_db():
     conn = get_db()
+    e_conn = get_messages_db()
     # Add your new table between lines 15 & 16.
     conn.execute("""
         CREATE TABLE IF NOT EXISTS users (
@@ -14,12 +20,7 @@ def init_db():
             password TEXT
         )
     """)
-    conn.commit()
-    conn.close()
-
-def init_messages_db():
-    conn = get_db()
-    conn.execute("""
+    e_conn.execute("""
         CREATE TABLE IF NOT EXISTS messages (
             message TEXT PRIMARY KEY,
             author TEXT
@@ -27,3 +28,14 @@ def init_messages_db():
     """)
     conn.commit()
     conn.close()
+
+#def init_messages_db():
+    #conn = get_db()
+    #conn.execute("""
+        #CREATE TABLE IF NOT EXISTS messages (
+            #message TEXT PRIMARY KEY,
+            #author TEXT
+       # )
+    #""")
+    #conn.commit()
+    #conn.close()
