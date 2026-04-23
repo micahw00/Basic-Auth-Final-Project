@@ -10,7 +10,7 @@
 # *Note: If you try to seed data and get an error about "UNIQUE constraint failed: users.username", it means you have already seeded the database.
 # If you need to seed the database again, simply delete the users.db file and run the seed script again.
 
-from database import get_db, init_db
+from database import get_db, init_db, get_messages_db
 import bcrypt
 
 def seed_database():
@@ -18,7 +18,7 @@ def seed_database():
     init_db()  # Ensure tables are created
     
     conn = get_db()
-    e_conn = get_messages.db()
+    e_conn = get_messages_db()
     
     # Sample users with passwords
     sample_users = [
@@ -44,7 +44,7 @@ def seed_database():
 
         for author, message in sample_messages:
             e_conn.execute(
-                "INSERT INTO messages (username, password) VALUES (?, ?)",
+                "INSERT INTO messages (author, message) VALUES (?, ?)",
                 (author, message)
             )
         
