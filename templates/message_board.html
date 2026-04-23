@@ -1,26 +1,17 @@
-<!-- TODO: Rename this file to dashboard.html when ready -->
-
 {% extends "base.html" %}
+
+
 
 {% block content %}
 
-<h2>Your Dashboard</h2>
+<h2>Da Great Message Board</h2>
 
 <h3>Welcome, {{ username }}!</h3>
 
 <!-- TODO: Add a button or link to create a new entry -->
 <!-- Example: <a href="/create">Create New Entry</a> -->
 
-<br>There's a message from {{ author }}, it says {{message}}<br>
-<form method="POST">
-  <input name="message" placeholder="What's on your mind"><br>
-  <button type="submit">Send Message</button>
-</form>
-#<a href="/">Back to login</a>
-<p class="error">{{ error }}</p>
-<!-- TODO: Loop through entries passed from Flask -->
-<!-- The variable "entries" will come from your Flask route -->
-<!-- Example structure: -->
+<h3>There's a message from {{ author }}, it says {{ message }}<h3>
 
 <!--
 {% for entry in entries %}
@@ -45,6 +36,6 @@
 <br>
 
 <!-- TODO: Add a logout button -->
-<a href="/logout"><button>Logout</button></a>
+<a href="/dashboard"><button>Back to the Dashboard</button></a>
 
 {% endblock %}

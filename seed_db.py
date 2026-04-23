@@ -49,6 +49,7 @@ def seed_database():
             )
         
         conn.commit()
+        e_conn.commit()
         print("\nDatabase seeding complete!")
     
     except Exception as e:
@@ -57,6 +58,7 @@ def seed_database():
     
     finally:
         conn.close()
+        e_conn.close()
 
 if __name__ == "__main__":
     seed_database()

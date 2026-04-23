@@ -28,6 +28,9 @@ def init_db():
     """)
     conn.commit()
     conn.close()
+    
+    e_conn.commit()
+    e_conn.close()
 
 #def init_messages_db():
     #conn = get_db()

@@ -1,0 +1,50 @@
+<!-- TODO: Rename this file to dashboard.html when ready -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Your Dashboard</h2>
+
+<h3>Welcome, {{ username }}!</h3>
+
+<!-- TODO: Add a button or link to create a new entry -->
+<!-- Example: <a href="/create">Create New Entry</a> -->
+
+<br>There's a message from {{ author }}, it says {{message}}<br>
+<form method="POST">
+  <input name="message" placeholder="What's on your mind"><br>
+  <a href="/message_board"></a><button type="submit">Send Message</button>
+</form>
+#<a href="/message_board">To the message board</a>
+<p class="error">{{ error }}</p>
+<!-- TODO: Loop through entries passed from Flask -->
+<!-- The variable "entries" will come from your Flask route -->
+<!-- Example structure: -->
+
+<!--
+{% for entry in entries %}
+    <div>
+        <h3>{{ entry['title'] }}</h3>
+        <p>{{ entry['content'] }}</p>
+
+        <!-- TODO: Add Edit link -->
+        <!-- Example: /edit/{{ entry['id'] }} -->
+
+        <!-- TODO: Add Delete link -->
+        <!-- Example: /delete/{{ entry['id'] }} -->
+
+    </div>
+    <hr>
+{% endfor %}
+-->
+
+<!-- TODO: If no entries exist, display a message like:
+"No entries yet!" -->
+
+<br>
+
+<!-- TODO: Add a logout button -->
+<a href="/logout"><button>Logout</button></a>
+
+{% endblock %}

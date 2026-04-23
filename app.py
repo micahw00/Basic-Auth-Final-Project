@@ -3,7 +3,7 @@
 # pip install flask
 
 from flask import Flask, request, redirect, url_for, render_template, session
-from database import get_db, init_db
+from database import get_db, init_db, get_messages_db
 import bcrypt
 import re
 
@@ -81,7 +81,10 @@ def dashboard():
 
     if "user" not in session:
         return redirect(url_for("login"))
-
+    
+    #if request.method == "GET":
+    
+    
     # TODO: Connect to the database
     # conn = get_db()
     #conn.execute("INSERT INTO messages (message, author) VALUES (?, ?)",
@@ -103,7 +106,7 @@ def dashboard():
     # return render_template("dashboard.html", entries=entries, username=session["user"])
 
     # TEMPORARY (remove later)
-    return render_template("secret.html", username=session["user"])
+    return render_template("dashboard.html", username=session["user"])
 
 
 # ---------- CREATE ----------
@@ -113,15 +116,23 @@ def dashboard():
 # - Save data to the database (POST)
 # - Redirect back to dashboard
 # NOTE: Remove the triple """ before and after each route to 'uncomment'
-"""
-@app.route("/message_board", methods=["GET", "POST"])
+#"""
+@app.route("/message_board", methods=["GET"])
 def message_board():
     if "user" not in session:
         return redirect(url_for("login"))
-
-    if request.method == "POST":
-        message = request.form["message"].strip()
-        author = request.form["password"].strip()
+    #if request.method == "GET":
+    #author = request.form["author"].strip()
+    #message = request.form["message"].strip()
+    e_conn = get_messages_db()
+    #message = e_conn.execute("SELECT * FROM messages",(message,)).fetchone()
+    #author = e_conn.execute("SELECT * FROM messages", (author,)).fetchone()
+    e_conn.close()
+    #e_conn = get_messages_db
+    
+    #if request.method == "POST":
+       # message = request.form["message"].strip()
+        #author = request.form["username"].strip()
 
         # TODO: Connect to database
 
@@ -130,10 +141,10 @@ def message_board():
 
         # TODO: Commit and close
 
-        return redirect(url_for("dashboard"))
+        #return redirect(url_for("dashboard"))
 
-    return render_template("create.html")
-"""
+    return render_template("message_board.html", username=session["user"])
+#"""
 
 # ---------- UPDATE ----------
 # TODO: Create a route like /edit/<id>
