@@ -3,7 +3,7 @@
 # pip install flask
 
 from flask import Flask, request, redirect, url_for, render_template, session
-from database import get_db, init_db, get_messages_db
+from database import get_db, init_db
 import bcrypt
 import re
 
@@ -86,27 +86,23 @@ def dashboard():
     
     
     # TODO: Connect to the database
-    # conn = get_db()
-    #conn.execute("INSERT INTO messages (message, author) VALUES (?, ?)",
-                   # (message, username)
-                #)
+    conn = get_db()
 
     # TODO: Get all entries that belong to the logged-in user
     # Example:
-    # entries = conn.execute(
-    #     "SELECT * FROM entries WHERE user=?",
-    #     (session["user"],)
-    # ).fetchall()
+    messages = conn.execute(
+        "SELECT * FROM messages"
+    ).fetchall()
 
     # TODO: Close the connection
-    # conn.close()
+    conn.close()
 
     # TODO: Pass entries into your template
     # Example:
-    # return render_template("dashboard.html", entries=entries, username=session["user"])
+    return render_template("dashboard.html", messages=messages, username=session["user"])
 
     # TEMPORARY (remove later)
-    return render_template("dashboard.html", username=session["user"])
+    # return render_template("dashboard.html", username=session["user"])
 
 
 # ---------- CREATE ----------
@@ -121,13 +117,16 @@ def dashboard():
 def message_board():
     if "user" not in session:
         return redirect(url_for("login"))
-    #if request.method == "GET":
-    #author = request.form["author"].strip()
-    #message = request.form["message"].strip()
-    e_conn = get_messages_db()
-    #message = e_conn.execute("SELECT * FROM messages",(message,)).fetchone()
-    #author = e_conn.execute("SELECT * FROM messages", (author,)).fetchone()
-    e_conn.close()
+    if request.method == "GET":
+        conn = get_db()
+        #message = request.form["message"]
+        #author = request.form["author"]
+    #messages = e_conn.execute("GET FROM messages (message, author) VALUES (?, ?)",
+                    #(message, username)
+                #).fetchall()
+        message = conn.execute("SELECT * FROM messages",(message,)).fetchone()
+        author = conn.execute("SELECT * FROM messages", (author,)).fetchone()
+        conn.close()
     #e_conn = get_messages_db
     
     #if request.method == "POST":
@@ -143,7 +142,7 @@ def message_board():
 
         #return redirect(url_for("dashboard"))
 
-    return render_template("message_board.html", username=session["user"])
+    return render_template("message_board.html", messages=messages, username=session["user"])
 #"""
 
 # ---------- UPDATE ----------

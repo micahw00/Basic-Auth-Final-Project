@@ -12,12 +12,12 @@
 <!-- Example: <a href="/create">Create New Entry</a> -->
 
 <h3>There's a message from {{ author }}, it says {{ message }}<h3>
-
-<!--
-{% for entry in entries %}
+<form method="GET">
+<hr>
+{% for text in messages %}
     <div>
-        <h3>{{ entry['title'] }}</h3>
-        <p>{{ entry['content'] }}</p>
+        <h3>{{ text['author'] }}</h3>
+        <p>{{ text['message'] }}</p>
 
         <!-- TODO: Add Edit link -->
         <!-- Example: /edit/{{ entry['id'] }} -->
@@ -28,13 +28,12 @@
     </div>
     <hr>
 {% endfor %}
--->
 
 <!-- TODO: If no entries exist, display a message like:
 "No entries yet!" -->
 
 <br>
-
+</form>
 <!-- TODO: Add a logout button -->
 <a href="/dashboard"><button>Back to the Dashboard</button></a>
 
