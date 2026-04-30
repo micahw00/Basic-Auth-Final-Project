@@ -44,7 +44,7 @@ def seed_database():
 
         for author, message in sample_messages:
             conn.execute(
-                "INSERT INTO message (author, message) VALUES (?, ?)",
+                "INSERT INTO messages (author, message) VALUES (?, ?)",
                 (author, message)
             )
         

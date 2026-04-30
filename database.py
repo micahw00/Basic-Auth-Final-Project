@@ -16,8 +16,8 @@ def init_db():
     """)
     conn.execute("""
         CREATE TABLE IF NOT EXISTS messages (
-            author TEXT PRIMARY KEY,
-            message TEXT
+            message TEXT PRIMARY KEY,
+            author TEXT
         )
     """)
     conn.commit()

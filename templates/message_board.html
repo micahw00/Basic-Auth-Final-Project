@@ -14,10 +14,10 @@
 <h3>There's a message from {{ author }}, it says {{ message }}<h3>
 <form method="GET">
 <hr>
-{% for text in messages %}
+{% for message in messages %}
     <div>
-        <h3>{{ text['author'] }}</h3>
-        <p>{{ text['message'] }}</p>
+        <h3>{{ message['author'] }}</h3>
+        <p>{{ message['message'] }}</p>
 
         <!-- TODO: Add Edit link -->
         <!-- Example: /edit/{{ entry['id'] }} -->
