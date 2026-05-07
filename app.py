@@ -29,12 +29,15 @@ def login():
     if request.method == "POST":
         username = request.form["username"].strip()
         password = request.form["password"].strip()
-
+        
         conn = get_db()
         user = conn.execute(
             "SELECT * FROM users WHERE username=?",
             (username,)
         ).fetchone()
+    #remove this below
+        #conn.execute("INSERT INTO messages (author) VALUES (?)",(username,))
+    #remove thius above
         conn.close()
 
         if user and bcrypt.checkpw(password.encode("utf-8"), user["password"]):
@@ -85,7 +88,6 @@ def dashboard():
     #if request.method == "GET":
     if request.method == "POST":
         message = request.form["message"].strip()
-        
         conn = get_db()
         conn.execute(
                     "INSERT INTO messages (message) VALUES (?)",
@@ -100,6 +102,7 @@ def dashboard():
     # TODO: Get all entries that belong to the logged-in user
     # Example:
     messages = conn.execute("SELECT * FROM messages").fetchall()
+    
 
     # TODO: Close the connection
     conn.close()

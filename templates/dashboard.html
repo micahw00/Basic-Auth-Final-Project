@@ -22,17 +22,17 @@
 <!-- The variable "entries" will come from your Flask route -->
 <!-- Example structure: -->
 
-<!--
-{% for entry in entries %}
+
+{% for message in messages %}
     <div>
-        <h3>{{ entry['title'] }}</h3>
-        <p>{{ entry['content'] }}</p>
+        <h3>{{ message['author'] }}</h3>
+        <p>{{ message['message'] }}</p>
 
         <!-- TODO: Add Edit link -->
-        <!-- Example: /edit/{{ entry['id'] }} -->
+        <!-- Example: /edit/{{ message['id'] }} -->
 
         <!-- TODO: Add Delete link -->
-        <!-- Example: /delete/{{ entry['id'] }} -->
+        <!-- Example: /delete/{{ message['id'] }} -->
 
     </div>
     <hr>
