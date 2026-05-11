@@ -91,11 +91,12 @@ def dashboard():
     
     #if request.method == "GET":
     if request.method == "POST":
+        author = request.form["author"].strip()
         message = request.form["message"].strip()
         conn = get_db()
         conn.execute(
-                    "INSERT INTO messages (message) VALUES (?)",
-                    (message,)
+                    "INSERT INTO messages (author, message) VALUES (?, ?)",
+                    (author, message)
                 )
         conn.commit()
         conn.close()
