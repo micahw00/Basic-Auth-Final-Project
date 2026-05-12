@@ -29,8 +29,8 @@ def seed_database():
 
     sample_messages = [
         ("alice", "Hello world!"),
-        ("bob", "I put pizza into a deepfryer"),
-        ("charlie", "HOW DO I BREATH"),
+        ("bob", "Hi!"),
+        ("charlie", "Hello!"),
     ]
     
     try:
