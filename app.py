@@ -12,6 +12,10 @@ app.secret_key = "supersecretkey"
 
 init_db()
 
+#TO DO: Add edit & delete functionality using guide videos on 5/14
+#TO DO: Do recording of code on 5/18 or 19 (?) and submit
+
+
 
 # ---------- PASSWORD VALIDATION ----------
 def is_valid_password(password):
