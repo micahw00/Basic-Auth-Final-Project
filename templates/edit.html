@@ -6,7 +6,9 @@
 <!-- TODO: Create a form that sends a POST request -->
 
 <form method="POST">
-
+    
+    <input name="message" placeholder="Updated Message:" value="{{message['message']}}"><br>
+    <button type="submit">Update Message</button>
     <!-- TODO: Pre-fill title using entry data -->
     <!-- Hint: value="{{ entry['title'] }}" -->
 
@@ -15,6 +17,7 @@
     <!-- TODO: Add submit button -->
 
 </form>
+<a href="{{url_for('dashboard')}}">back to Dashboard</a>
 
 <!-- TODO: Add a link back to dashboard -->
 

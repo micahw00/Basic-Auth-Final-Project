@@ -10,13 +10,15 @@ def init_db():
     # Add your new table between lines 15 & 16.
     conn.execute("""
         CREATE TABLE IF NOT EXISTS users (
-            username TEXT PRIMARY KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT,
             password TEXT
         )
     """)
     conn.execute("""
         CREATE TABLE IF NOT EXISTS messages (
-            message TEXT PRIMARY KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            message TEXT,
             author TEXT
         )
     """)

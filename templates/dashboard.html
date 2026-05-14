@@ -13,7 +13,7 @@
 
 
 <form method="POST">
-  <input name="author" placeholder="Author:"><br>
+  <!--<p name="author" placeholder="Author:">{{session["user"]}}</p><br> -->
   <input name="message" placeholder="What's on your mind"><br>
   <button type="submit">Send Message</button>
 </form>
@@ -28,12 +28,9 @@
     <div>
         <h3>{{ message['author'] }}</h3>
         <p>{{ message['message'] }}</p>
+        <a href="/edit/{{message['id']}}">edit</a>
 
-        <!-- TODO: Add Edit link -->
-        <!-- Example: /edit/{{ message['id'] }} -->
-
-        <!-- TODO: Add Delete link -->
-        <!-- Example: /delete/{{ message['id'] }} -->
+        
 
     </div>
     <hr>

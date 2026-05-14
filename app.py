@@ -91,7 +91,7 @@ def dashboard():
     
     #if request.method == "GET":
     if request.method == "POST":
-        author = request.form["author"].strip()
+        author = session['user']
         message = request.form["message"].strip()
         conn = get_db()
         conn.execute(
@@ -169,21 +169,47 @@ def message_board():
 # - Show it in a form
 # - Update the database on submit
 
-"""
+
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
     if "user" not in session:
         return redirect(url_for("login"))
 
     # TODO: Connect to database
+    conn = get_db
+
+    message = conn.execute("SELECT * FROM messages WHERE id-?",
+        (id,)
+    ).fetchone()
 
     # TODO: Get entry WHERE id AND user
     # This prevents editing other users' data
 
-    # if not entry:
-    #     return "Not allowed"
+    if not message:
+        conn.close
+        return "Not allowed"
 
     if request.method == "POST":
+        #author = session['user']
+        message = request.form["message"].strip()
+
+        if not message:
+            error = "Fields cannot be empty"
+        
+        else:
+            try:
+                conn.execute(
+                    "UPDATE messages message=? WHERE id=?",
+                    (message, id)
+                )
+                conn.commit()
+                conn.close()
+                return redict(url_for("dashboard"))
+            
+            except:
+                conn.rollback()
+                conn.close()
+                return "Error updating message"
         # TODO: Get updated form data
 
         # TODO: Update database
@@ -191,9 +217,9 @@ def edit(id):
 
         # TODO: Commit and close
 
-        return redirect(url_for("dashboard"))
-
-    return render_template("edit.html", entry=entry)
+        #return redirect(url_for("dashboard"))
+    conn.close()
+    return render_template("edit.html", message=message)
 """
 
 # ---------- DELETE ----------
@@ -215,7 +241,7 @@ def delete(id):
     # TODO: Commit and close
 
     return redirect(url_for("dashboard"))
-"""
+
 
 
 @app.route("/logout")
