@@ -10,8 +10,8 @@ def init_db():
     # Add your new table between lines 15 & 16.
     conn.execute("""
         CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT,
+            
+            username TEXT PRIMARY KEY,
             password TEXT
         )
     """)

@@ -7,18 +7,12 @@
 
 <form method="POST">
     
-    <input name="message" placeholder="Updated Message:" value="{{message['message']}}"><br>
+    <input name="message" placeholder="Updated Message:" value="{{  message['message']  }}"><br>
     <button type="submit">Update Message</button>
-    <!-- TODO: Pre-fill title using entry data -->
-    <!-- Hint: value="{{ entry['title'] }}" -->
-
-    <!-- TODO: Pre-fill content using entry data -->
-
-    <!-- TODO: Add submit button -->
 
 </form>
 <a href="{{url_for('dashboard')}}">back to Dashboard</a>
-
+<p class="error">{{ error }}</p>
 <!-- TODO: Add a link back to dashboard -->
 
 {% endblock %}

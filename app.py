@@ -176,11 +176,8 @@ def edit(id):
         return redirect(url_for("login"))
 
     # TODO: Connect to database
-    conn = get_db
-
-    message = conn.execute("SELECT * FROM messages WHERE id-?",
-        (id,)
-    ).fetchone()
+    conn = get_db()
+    message = conn.execute("SELECT * FROM messages WHERE id-?", (id,)).fetchone()
 
     # TODO: Get entry WHERE id AND user
     # This prevents editing other users' data
@@ -199,12 +196,12 @@ def edit(id):
         else:
             try:
                 conn.execute(
-                    "UPDATE messages message=? WHERE id=?",
+                    "UPDATE messages SET message=? WHERE id=?",
                     (message, id)
                 )
                 conn.commit()
                 conn.close()
-                return redict(url_for("dashboard"))
+                return redirect(url_for("dashboard"))
             
             except:
                 conn.rollback()
